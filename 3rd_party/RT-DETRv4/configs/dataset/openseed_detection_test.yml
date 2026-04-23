@@ -1,0 +1,49 @@
+task: detection
+
+evaluator:
+  type: CocoEvaluator
+  iou_types: ['bbox', ]
+  ranges:
+    small: [0, 625] # 0 mm ~ 1 mm(25**2)
+    medium: [625, 15625] # 1 mm ~ 5 mm(125**2)
+    large: [15625, 10000000000] # > 5 mm
+
+num_classes: 656
+remap_mscoco_category: False
+
+train_dataloader:
+  type: DataLoader
+  dataset:
+    type: CocoDetection
+    img_folder: data/OpenSeed-LZU-detect/images/train
+    ann_file: data/OpenSeed-LZU-detect/annotations/instances_coco_train.json
+    return_masks: False
+    transforms:
+      type: Compose
+      ops: ~
+  shuffle: True
+  num_workers: 8
+  drop_last: True
+  collate_fn:
+    type: BatchImageCollateFunction
+
+
+val_dataloader:
+  type: DataLoader
+  dataset:
+    type: CocoDetection
+    # img_folder: data/OpenSeed-LZU-detect/images/val
+    # ann_file: data/OpenSeed-LZU-detect/annotations/instances_coco_val.json
+    img_folder: data/OpenSeed-LZU-detect/images/test
+    ann_file: data/OpenSeed-LZU-detect/annotations/instances_coco_test.json
+    # img_folder: data/OpenSeed-LZU-raw/images
+    # ann_file: data/OpenSeed-LZU-raw/annotations/instances_coco_test_start_0.json
+    return_masks: False
+    transforms:
+      type: Compose
+      ops: ~
+  shuffle: False
+  num_workers: 8
+  drop_last: False
+  collate_fn:
+    type: BatchImageCollateFunction

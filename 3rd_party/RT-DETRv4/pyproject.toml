@@ -1,0 +1,23 @@
+[project]
+name = "rt-detrv4"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "calflops>=0.3.2",
+    "faster-coco-eval>=1.6.5",
+    "numpy>=2.2.6",
+    "scipy>=1.15.3",
+    "tensorboard>=2.20.0",
+    "torch>=2.10.0",
+    "torchvision>=0.25.0",
+    "transformers>=4.57.6",
+]
+
+[[tool.uv.index]]
+name = "tsinghua"
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
+
+[tool.uv]
+python-install-mirror = "https://gh-proxy.com/https://github.com/astral-sh/python-build-standalone/releases/download"
