@@ -1,0 +1,16 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+.env
+*.mnn
+*.pt
+*.onnx
+3rd_party/yolov26/cfg/datasets
+
+# Virtual environments
+.venv
+flash_attn-2.8.3+cu12torch2.7cxx11abiTRUE-cp311-cp311-linux_x86_64.whl

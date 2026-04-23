@@ -1,0 +1,26 @@
+[project]
+name = "yolov26"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "mnn>=3.2.5",
+    "onnx>=1.20.1",
+    "onnxruntime>=1.16.0",
+    "onnxslim>=0.1.84",
+    "rootutils>=1.0.7",
+    "typed-argument-parser>=1.11.0",
+    "ultralytics>=8.4.12",
+]
+
+[[tool.uv.index]]
+name = "tsinghua"
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
+
+[dependency-groups]
+dev = [
+    "pandas>=3.0.0",
+    "regex>=2026.1.15",
+    "tqdm>=4.67.1",
+]

@@ -1,0 +1,105 @@
+[project]
+name = "openseed-detect"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "einops>=0.8.1",
+    "ipykernel>=6.29.5",
+    "matplotlib>=3.10.3",
+    "mnn>=3.2.3",
+    "numpy>=2.3.0",
+    "onnxruntime-gpu>=1.22.0",
+    "opencv-python-headless>=4.6.0",
+    "openpyxl>=3.1.5",
+    "pandas>=2.3.0",
+    "rich>=14.0.0",
+    "rootutils>=1.0.7",
+    "scikit-learn>=1.7.0",
+    "seaborn>=0.13.2",
+    "tensorboard>=2.19.0",
+    "timm>=1.0.15",
+    "pillow>=7.1.2",
+    "pyyaml>=5.3.1",
+    "requests>=2.23.0",
+    "scipy>=1.4.1",
+    "torch>=1.8.0",
+    "torch>=1.8.0,!=2.4.0; sys_platform == 'win32'", # Windows CPU errors w/ 2.4.0 https://github.com/ultralytics/ultralytics/issues/15049
+    "torchvision>=0.9.0",
+    "psutil", # system utilization
+    "ultralytics-thop>=2.0.0", # FLOPs computation https://github.com/ultralytics/thop
+    "flash-attn",
+    "typed-argument-parser>=1.11.0",
+    "regex>=2025.11.3",
+    "faster-coco-eval>=1.7.0",
+]
+
+[dependency-groups]
+dev = [
+    "faster-coco-eval>=1.7.0",
+    "onnx>=1.20.0",
+    "onnxconverter-common>=1.16.0",
+    "onnxruntime-gpu>=1.22.0",
+    "onnxsim>=0.4.36",
+    "onnxslim>=0.1.80",
+    "pyarrow>=23.0.0",
+]
+
+[tool.uv.sources]
+flash-attn = { path = "flash_attn-2.8.3+cu12torch2.7cxx11abiTRUE-cp311-cp311-linux_x86_64.whl" }
+
+[[tool.uv.index]]
+name = "tsinghua"
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
+
+[tool.pyright]
+include = ["src"]
+exclude = ["**/node_modules", "**/__pycache__", "data/dataset"]
+
+
+[tool.pytest.ini_options]
+addopts = [
+    "--color=yes",
+    "--durations=0",
+    "--strict-markers",
+    "--doctest-modules",
+]
+filterwarnings = ["ignore::DeprecationWarning", "ignore::UserWarning"]
+log_cli = true
+markers = ["slow: slow tests"]
+minversion = "6.0"
+testpaths = "tests/"
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: nocover",
+    "raise NotImplementedError",
+    "raise NotImplementedError()",
+    "if __name__ == .__main__.:",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "F",      # pyflakes
+    "I",      # isort
+    "B",      # flake8-bugbear
+    "C4",     # flake8-comprehensions
+    "UP",     # pyupgrade
+    "ARG001", # unused arguments in functions
+]
+ignore = [
+    "B008",  # do not perform function calls in argument defaults
+    "W191",  # indentation contains tabs
+    "B904",  # Allow raising exceptions without from e, for HTTPException
+    "B905",
+    "E712",
+    "UP015",
+    "E402",  # module level import not at top of file
+]
+
+[tool.ruff]
+line-length = 110
+
